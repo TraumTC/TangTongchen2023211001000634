@@ -11,7 +11,7 @@
     <title>HW-week1</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- 引入自定义的验证脚本 -->
-    <script src="re.js"></script>
+<%--    <script src="re.js"></script>--%>
     <style>
         body{
             background-repeat: no-repeat;
@@ -33,18 +33,16 @@
 </head>
 <body>
     <dlv id="biaodan" >
-        <form action="#">
-    <h2> New User Registration!</h2>
-    <input type="text" id="username" placeholder="Username"><br><br>
-    <input type="password" id="pwd" placeholder="Password"><br><br>
-    <input type="text" id="emali" placeholder="Email" ><br><br>
-    <label >Gender</label>
-    <input type="radio" name="gender"> Male
-    <input type="radio" name="gender"> Female
-
-    <input type="text" id="day" placeholder="date of Birth(yyyy-mm-dd)" ><br>
-    <input type="submit" value="注册" >
-
+        <form method="post" action="register">
+            <h2> New User Registration!</h2>
+            <input type="text" name="username" placeholder="Username"><br><br>
+            <input type="password" name="pwd" placeholder="Password"><br><br>
+            <input type="text" name="email" placeholder="Email" ><br><br>
+            <label >Gender</label>
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+            <input type="text" name="day" placeholder="date of Birth(yyyy-mm-dd)" ><br>
+            <input type="submit" value="Register" >
         </form>
     </dlv>
 </body>

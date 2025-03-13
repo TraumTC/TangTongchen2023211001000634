@@ -1,4 +1,4 @@
-package com.TangTongchen.week2.homwork;
+package com.TangTongchen.week1.homwork;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
