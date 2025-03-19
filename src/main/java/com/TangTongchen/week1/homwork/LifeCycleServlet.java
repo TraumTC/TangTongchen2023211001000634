@@ -1,4 +1,4 @@
-package com.example.tangtongchen2023211001000634;
+package com.TangTongchen.week1.homwork;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

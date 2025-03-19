@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-<!--    <servlet>-->
-<!--        <servlet-name>Tang</servlet-name>-->
-<!--        <servlet-class>com.TangTongchen.week1.homwork.HelloWorldServlet</servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet>-->
-<!--        <servlet-name>LifeCycleServlet</servlet-name>-->
-<!--        <servlet-class>com.example.tangtongchen2023211001000634.LifeCycleServlet</servlet-class>-->
-<!--    </servlet>-->
+    <servlet>
+        <servlet-name>Tang</servlet-name>
+        <servlet-class>com.TangTongchen.week1.homwork.HelloWorldServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <servlet-class>com.TangTongchen.week1.homwork.LifeCycleServlet</servlet-class>
+    </servlet>
 <!--    <servlet>-->
 <!--        <servlet-name>Register</servlet-name>-->
 <!--        <servlet-class>com.TangTongchen.week2.HK.RegisterServlet</servlet-class>-->
@@ -63,14 +63,16 @@
 <!--        <servlet-name>sqlJDBC</servlet-name>-->
 <!--        <url-pattern>/jdbc</url-pattern>-->
 <!--    </servlet-mapping>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>LifeCycleServlet</servlet-name>-->
-<!--        <url-pattern>/LifeCycle</url-pattern>-->
-<!--    </servlet-mapping>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>Tang</servlet-name>-->
-<!--        <url-pattern>/hello</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <url-pattern>/LifeCycle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Tang</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+
     <context-param>
         <param-name>driver</param-name>
         <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>

@@ -14,7 +14,8 @@ import java.sql.DriverManager;
 import java.sql.*;
 
 @WebServlet(
-        urlPatterns = {"/register"}
+        urlPatterns = {"/register"},
+        loadOnStartup = 1
 )
 
 public class RegisterServlet extends HttpServlet {
@@ -28,12 +29,11 @@ public class RegisterServlet extends HttpServlet {
         String url = context.getInitParameter("url");
         String username = context.getInitParameter("username");
         String password = context.getInitParameter("password");
-
-
         try{
             Class.forName(driver);
             con= DriverManager.getConnection(url,username,password);
             System.out.println("init()-->con:"+con);
+
         }catch(ClassNotFoundException |SQLException e){
             e.printStackTrace();
         }
@@ -68,55 +68,70 @@ public class RegisterServlet extends HttpServlet {
 //        writer.println("<br>Birthdate:"+Birthdate);
 //        writer.close();
         //jdbc
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        request.setCharacterEncoding("UTF-8"); // 设置请求编码
+//        response.setContentType("text/html;charset=UTF-8");
+//        PrintWriter out = response.getWriter();
+//        request.setCharacterEncoding("UTF-8"); // 设置请求编码
 
         // 获取表单数据（假设表单字段名与表字段匹配）
         String userName = request.getParameter("username");
-        String password = request.getParameter("pwd");
+        String password = request.getParameter("password");
         String email = request.getParameter("email");
         String gender = request.getParameter("gender");
-        String birthdate = request.getParameter("day");
+        String birthdate = request.getParameter("birthdate");
+
 
         // 插入数据
-        String insertSql = "INSERT INTO usertable (username, password, email, gender, birthdate) VALUES (?,?,?,?,?)";
-        try (PreparedStatement insertStmt = con.prepareStatement(insertSql)) {
-            insertStmt.setString(1, userName);
-            insertStmt.setString(2, password);
-            insertStmt.setString(3, email);
-            insertStmt.setString(4, gender);
-            insertStmt.setDate(5, Date.valueOf(birthdate));
-            insertStmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            out.println("<h2>数据插入失败</h2>");
-            out.println(e.getMessage());
-            return;
-        }
+//        String insertSql = "INSERT INTO usertable (username, password, email, gender, birthdate) VALUES (?,?,?,?,?)";
+//        try (PreparedStatement insertStmt = con.prepareStatement(insertSql)) {
+//            insertStmt.setString(1, userName);
+//            insertStmt.setString(2, password);
+//            insertStmt.setString(3, email);
+//            insertStmt.setString(4, gender);
+//            insertStmt.setDate(5, Date.valueOf(birthdate));
+//            insertStmt.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            out.println("<h2>数据插入失败</h2>");
+//            out.println(e.getMessage());
+//            return;
+//        }
+//teacher
+        try{
+            Statement st=con.createStatement();
+            String sql="insert into usertable(username,password,email,gender,birthdate)" +
+                    " values('" + userName + "','" + password + "','" + email + "','" + gender + "','" + birthdate + "')";
+            System.out.println("sql" + sql);
 
-        // 查询并展示所有数据
-        String selectSql = "SELECT * FROM usertable";
-        try (PreparedStatement selectStmt = con.prepareStatement(selectSql);
-             ResultSet rs = selectStmt.executeQuery()) {
-            out.println("<html><body>");
-            out.println("<table border='1'>");
-            out.println("<tr><th>ID</th><th>UserName</th><th>Password</th><th>Email</th><th>Gender</th><th>Birthdate</th></tr>");
-            while (rs.next()) {
-                out.println("<tr>");
-                out.println("<td>" + rs.getInt("ID") + "</td>");
-                out.println("<td>" + rs.getString("UserName") + "</td>");
-                out.println("<td>" + rs.getString("Password") + "</td>");
-                out.println("<td>" + rs.getString("Email") + "</td>");
-                out.println("<td>" + rs.getString("Gender") + "</td>");
-                out.println("<td>" + rs.getString("Birthdate") + "</td>");
-                out.println("</tr>");
-            }
-            out.println("</table></body></html>");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            out.println("<h2>数据查询失败</h2>");
+            int n=st.executeUpdate(sql);
+
+            response.sendRedirect("login.jsp");
         }
+        catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+//teacher
+//        // 查询并展示所有数据
+//        String selectSql = "SELECT * FROM usertable";
+//        try (PreparedStatement selectStmt = con.prepareStatement(selectSql);
+//             ResultSet rs = selectStmt.executeQuery()) {
+//            out.println("<html><body>");
+//            out.println("<table border='1'>");
+//            out.println("<tr><th>ID</th><th>UserName</th><th>Password</th><th>Email</th><th>Gender</th><th>Birthdate</th></tr>");
+//            while (rs.next()) {
+//                out.println("<tr>");
+//                out.println("<td>" + rs.getInt("ID") + "</td>");
+//                out.println("<td>" + rs.getString("UserName") + "</td>");
+//                out.println("<td>" + rs.getString("Password") + "</td>");
+//                out.println("<td>" + rs.getString("Email") + "</td>");
+//                out.println("<td>" + rs.getString("Gender") + "</td>");
+//                out.println("<td>" + rs.getString("Birthdate") + "</td>");
+//                out.println("</tr>");
+//            }
+//            out.println("</table></body></html>");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            out.println("<h2>数据查询失败</h2>");
+//        }
     }
 
 }

@@ -17,7 +17,10 @@ public class RedirectServlet extends HttpServlet {
 
 //    response.sendRedirect("/index.jsp");
 
-    response.sendRedirect("https://www.baidu.com/");
+//    response.sendRedirect("https://www.baidu.com/");
+        System.out.println("before redirect");
+        response.sendRedirect("index.jsp");
+        System.out.println("after redirect");
     }
 
 
